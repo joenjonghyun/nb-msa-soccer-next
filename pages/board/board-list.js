@@ -1,46 +1,41 @@
-import { useEffect , useState } from "react";
-import axios from "axios";
 import style from "common/style/table.module.css"
-
-const Table = ({columns, colspan, data}) => {
-    return(
+import axios from "axios"
+import { useEffect, useState } from "react"
+const Table = ({ colspan, data}) =>{
+    return (
         <table className={style.table}>
         <thead>
-            {/**<th key={column} className={style.td}>{column}</th> */}
             <tr className={style.tr}>
-            {columns.map((column) => (
-                <th key = {column} className={style.td}>{column}</th>
-            ))}
-        </tr>
+                <th className={style.th}>게시판</th>
+            </tr>
         </thead>
         <tbody>
                 { data.length == 0 ?<tr className={style.tr}>
                                     <td colSpan={colspan} className={style.td}>데이터가없습니다</td>
                                     </tr>
-                :data.map((board)=>(
-                    <tr className={style.tr} key={board.passengerId}>
-                        <td className={style.td}>{board.passengerId}</td>
-                        <td className={style.td}>{board.name}</td>
-                        <td className={style.td}>{board.teamId}</td>
-                        <td className={style.td}>{board.subject}</td>
-                        </tr>
-                    ))}
+                :data.map((user)=>(
+                <tr className={style.tr} key={user.passengerId}>
+                <td className={style.td}>{user.title}</td>
+                    </tr>
+                ))}
+
         </tbody>
-        </table>
-    );
+        </table>    
+    )
 }
-export default function BoradList(){
-    const columns = ["passengerId","name", "teamId", "subject"]
+export default function BoardList(){
     const [data, setData] = useState([])
-    useEffect(() =>{
+    const count = data.length
+    useEffect(() => {
         axios.get('http://localhost:5000/api/board/list').then(res=>{
-            setData(res.data.board)
+            setData(res.data.Boards)
         }).catch(err=>{})
-    }, [])
+    },[])
     return(<>
-    <h1>게시판</h1>
-    <div className={style.td}>
-    <Table columns={columns} colspan={4} data = {data}/>
-    </div>
-    </>)
+        <h1>게시판리스트</h1>
+        <div className={style.td}>
+        <Table data = {data}/>
+        </div>
+
+        </>)
 }

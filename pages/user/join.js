@@ -8,24 +8,25 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import  Link from 'next/link';
+import Link from 'next/link';
 import * as yup from 'yup';
 import _ from '@lodash';
-import Image from 'next/Image';
+import Image from 'next/Image'
 //import 'features/user/style/UserLayout.scss'
 //import "features/user/style/UserRegister.scss"
 //import { CheckList } from '..';
+
 import { joinRequest } from '../../redux/reducers/user.reducer';
 
 const schema = yup.object().shape({
-  username: yup.string().required('You must enter your name'),
-  name: yup.string().required('You must enter your name'),
-  phone: yup.string().required('You must enter your name'),
+  username: yup.string().required('사용자 ID를 입력하시오'),
+  name: yup.string().required('사용자 이름을 입력하시오'),
+  phone: yup.string().required('전화번호를 입력하시오'),
   password: yup
     .string()
-    .required('Please enter your password.')
-    .min(8, 'Password is too short - should be 8 chars minimum.'),
-  passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .required('비밀번호를 입력하시오')
+    .min(8, '비밀번호가 너무 짧습니다. 최소8자 이상 되어야 합니다.'),
+  passwordConfirm: yup.string().oneOf([yup.ref('password'), null], '비밀번호가 일치해야 합니다'),
 
 });
 
@@ -33,7 +34,7 @@ const defaultValues = {
   username: '',
   name: '',
   phone: '',
-  password: ''
+  password: '',
 };
 
 export default function Register3Page() {
@@ -66,7 +67,7 @@ export default function Register3Page() {
                   animate={{ opacity: 1, transition: { delay: 0.2 } }}
                 >
                   <div className="flex items-center mb-48">
-                    <Image src={"/user/paper-pencil.jpg"} alt="me" width="64" height="64" />
+                  <Image src={"/user/paper-pencil.jpg"}  alt="me" width="64" height="64" />
                     <div className="border-l-1 mr-4 w-1 h-40" />
                     <div>
                       <Typography className="text-24 font-semibold logo-text" color="inherit">
@@ -125,7 +126,7 @@ export default function Register3Page() {
                       />
                     )}
                   />
-
+                  
 
                   <Controller
                     name="phone"
@@ -217,7 +218,7 @@ export default function Register3Page() {
                     )}
                   />
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    
+                  
                     <Button style={{'margin-top' : '60px'}}
                     variant="contained"
                     color="primary"
@@ -235,7 +236,7 @@ export default function Register3Page() {
 
               <div className="flex flex-col items-center justify-center pb-32">
                 <span className="font-normal">이미 회원이신가요?</span>
-                <Link className="font-normal" href="/user/Login">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link className="font-normal" href="/user/login">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   로그인하기
                 </Link>
               
