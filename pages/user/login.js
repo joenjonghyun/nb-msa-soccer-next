@@ -38,7 +38,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required("Please enter your password.")
-    .min(8, "Password 가 너무 짧아요 - 최소8자이상"),
+    .min(1, "Password 가 너무 짧아요 - 최소1자이상"),
 });
 const defaultValues = {
   username: "",
