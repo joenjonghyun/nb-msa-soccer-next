@@ -8,6 +8,7 @@ export default function Game(){
       <ul>
         <li className={style.li}> <Link href='/game/game-list'>GameList</Link> </li>
         <li className={style.li}> <Link href='/game/team-list'>TeamList</Link> </li>
+        <li className={style.li}> <Link href='/game/team-form'>TeamForm</Link> </li>
       </ul>
     </nav>
     );

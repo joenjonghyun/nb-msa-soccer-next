@@ -7,7 +7,7 @@ export default function Board(){
     <nav>
       <ul>
         <li className={style.li}> <Link href='/board/board-list'>BoardList</Link> </li>
-        <li className={style.li}> <Link href='/board/board-form'>BoardForm</Link> </li>
+        <li className={style.li}> <Link href='/board/board'>Board</Link> </li>
       </ul>
     </nav>
     );
