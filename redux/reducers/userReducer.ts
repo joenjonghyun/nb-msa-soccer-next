@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 export interface UserType{
-            userid: string;
-            password: string;  
-            email: string;
-            name: string;  
-            phone: string;
-            birth: string;
-            address: string;
+    userid: string;
+    password: string;  
+    email: string;
+    name: string;  
+    phone: string;
+    birth: string;
+    address: string;
 }
 
 export interface UserState{
@@ -16,10 +16,11 @@ export interface UserState{
     error: any;
 }
 
+
 const initialState: UserState = {
     loading: false,
     data: [],
-    error: null,
+    error: null
 }
 
 const userSlice = createSlice({
@@ -27,17 +28,31 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         joinRequest(state: UserState, payload){
-            alert('진행2: 리듀서 내부 ')
-            state.loading= true;
+            state.loading = true; 
         },
-        joinSuccess(state: UserState, {payload}){
-            state.data =[...state.data, payload]
-            state.loading =false;
+        joinSuccess(state: UserState, {payload}){ 
+            state.data = [...state.data, payload]
+            state.loading = false;
+            
         },
-        joinFailure(state: UserState, {payload}){
+        joinFailure(state: UserState, {payload}){ 
             state.data = payload;
-            state.loading=false;
+            state.loading = false;
+        },
+        loginRequest(state: UserState, payload){
+            alert('진행 2: 로그인 리듀서 내부 ') 
+            state.loading = true; 
+        },
+        loginSuccess(state: UserState, {payload}){ 
+            state.data = [...state.data, payload]
+            state.loading = false;
+            
+        },
+        loginFailure(state: UserState, {payload}){ 
+            state.data = payload;
+            state.loading = false;
         }
+        
     }
 })
 const { reducer, actions } = userSlice

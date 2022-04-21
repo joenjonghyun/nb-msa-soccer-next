@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import tableStyles from "../common/style/table.module.css"
 import MenuItem from '@mui/material/MenuItem';
+
 export default function Nav(){
   const basicUrls = ["/basic/counter","/basic/calc","/basic/bmi"]
   const basicSubTitle = ["카운터","계산기","BMI"]
@@ -20,8 +21,10 @@ export default function Nav(){
   
   return (
     <table className={tableStyles.table}>
+    <tbody>
       <tr>
-      <td><SubMenu title={"기본"} urls={basicUrls} subTitles={basicSubTitle}/>
+        <td>
+        <SubMenu title={"기본"} urls={basicUrls} subTitles={basicSubTitle}/>
         <SubMenu title={"사용자"} urls={userUrls} subTitles={userSubTitle}/>
         <SubMenu title={"투두"} urls={todoUrls} subTitles={todoSubTitle}/>
         <SubMenu title={"게임"} urls={gameUrls} subTitles={gameSubTitle}/>
@@ -29,6 +32,7 @@ export default function Nav(){
         <SubMenu title={"게시판"} urls={boardUrls} subTitles={boardSubTitle}/>
         </td>
       </tr>
+      </tbody>
     </table>
   );
 }
@@ -60,7 +64,7 @@ const SubMenu = (props) => {
         }}
       >
          {props.urls.map(function(url, i){
-            return <MenuItem onClick={handleClose}><Link href={url} key={i}>{props.subTitles[i]}</Link></MenuItem>
+            return <MenuItem onClick={handleClose} key={i}><Link href={url} >{props.subTitles[i]}</Link></MenuItem>
           })}
       </Menu></>
 }
